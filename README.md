@@ -59,7 +59,7 @@ Run this and you should see something like `<Buffer 53 6f...>` logged. This is a
 ```js
 const fs = require("fs");
 
-fs.readFile("workshop/test.txt", "utf-8", (error, file) => {
+fs.readFile("workshop/test.txt", { encoding: "utf-8" }, (error, file) => {
   console.log(file);
 });
 ```
@@ -77,7 +77,7 @@ Since callbacks have no built-in way to handle errors (unlike promises with thei
 So generally you want to handle the error first in your callback, then deal with the "happy case".
 
 ```js
-fs.readFile("not-real.txt", "utf-8", (error, file) => {
+fs.readFile("not-real.txt", { encoding: "utf-8" }, (error, file) => {
   if (error) {
     console.log(error);
   } else {
@@ -142,7 +142,7 @@ function router(request, response) {
 1. Open `workshop/server.js` in your editor
 1. Run `npm run dev`, then open `http://localhost:3000` in your browser
 1. You should see an HTML page loaded, but with no styles
-   - Check the network tab and you'll see failing requests for `.css`, `.js`, `.ico` and `.jpg` files
+   - **Check the network tab** and you'll see failing requests for `.css`, `.js`, `.ico` and `.jpg` files
 1. Edit the `handlers/public.js` to make these requests work
    - Make sure they have the correct `content-type` header
 
